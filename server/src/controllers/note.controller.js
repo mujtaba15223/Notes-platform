@@ -18,18 +18,33 @@ const inlineMimeTypes = {
 
 const getAccessibleNote = async (req) => {
   const note = await noteService.getNoteById(req.params.id);
+
   const uploaderId = note.uploadedBy?._id?.toString();
-  if (note.isApproved === false && req.user?.role !== "admin" && uploaderId !== req.user?._id?.toString()) {
+
+  if (
+    note.isApproved === false &&
+    req.user?.role !== "admin" &&
+    uploaderId !== req.user?._id?.toString()
+  ) {
     throw new AppError("Note not found", 404);
   }
+
   return note;
 };
 
 const getExistingFilePath = (note) => {
   const filePath = storageService.getFilePath(note.fileUrl);
+
+  // Cloudinary file
+  if (note.fileUrl?.startsWith("http")) {
+    return filePath;
+  }
+
+  // Local file
   if (!fs.existsSync(filePath)) {
     throw new AppError("The note file is missing from storage", 404);
   }
+
   return filePath;
 };
 
@@ -38,9 +53,13 @@ export const noteController = {
     if (!req.file) {
       throw new AppError("No file uploaded", 400);
     }
-    
-    const note = await noteService.createNote(req.body, req.file, req.user._id);
-    
+
+    const note = await noteService.createNote(
+      req.body,
+      req.file,
+      req.user._id
+    );
+
     res.status(201).json({
       success: true,
       message: "Note uploaded successfully",
@@ -50,7 +69,7 @@ export const noteController = {
 
   getNotes: asyncHandler(async (req, res) => {
     const result = await noteService.getNotes(req.query);
-    
+
     res.json({
       success: true,
       data: result.data,
@@ -60,9 +79,9 @@ export const noteController = {
 
   getNote: asyncHandler(async (req, res) => {
     const note = await getAccessibleNote(req);
-    
+
     await noteService.incrementViews(req.params.id);
-    
+
     res.json({
       success: true,
       data: { note },
@@ -71,8 +90,14 @@ export const noteController = {
 
   updateNote: asyncHandler(async (req, res) => {
     const isAdmin = req.user.role === "admin";
-    const note = await noteService.updateNote(req.params.id, req.user._id, req.body, isAdmin);
-    
+
+    const note = await noteService.updateNote(
+      req.params.id,
+      req.user._id,
+      req.body,
+      isAdmin
+    );
+
     res.json({
       success: true,
       message: "Note updated successfully",
@@ -82,8 +107,13 @@ export const noteController = {
 
   deleteNote: asyncHandler(async (req, res) => {
     const isAdmin = req.user.role === "admin";
-    const result = await noteService.deleteNote(req.params.id, req.user._id, isAdmin);
-    
+
+    const result = await noteService.deleteNote(
+      req.params.id,
+      req.user._id,
+      isAdmin
+    );
+
     res.json({
       success: true,
       message: result.message,
@@ -93,8 +123,15 @@ export const noteController = {
   downloadNote: asyncHandler(async (req, res) => {
     const note = await getAccessibleNote(req);
     const filePath = getExistingFilePath(note);
-    
+
     await noteService.incrementDownloads(req.params.id);
+
+    // Cloudinary file
+    if (note.fileUrl?.startsWith("http")) {
+      return res.redirect(note.fileUrl);
+    }
+
+    // Local file
     res.download(filePath, note.fileName);
   }),
 
@@ -104,19 +141,35 @@ export const noteController = {
     const mimeType = inlineMimeTypes[note.fileType];
 
     if (!mimeType) {
-      throw new AppError("This file type cannot be previewed in the browser. Download it to view.", 415);
+      throw new AppError(
+        "This file type cannot be previewed in the browser. Download it to view.",
+        415
+      );
     }
 
     await noteService.incrementViews(req.params.id);
-    res.sendFile(filePath, {
-      headers: {
-        "Content-Type": mimeType,
-        "Content-Disposition": "inline",
-        "X-Content-Type-Options": "nosniff",
+
+    // Cloudinary file
+    if (note.fileUrl?.startsWith("http")) {
+      return res.redirect(note.fileUrl);
+    }
+
+    // Local file
+    res.sendFile(
+      filePath,
+      {
+        headers: {
+          "Content-Type": mimeType,
+          "Content-Disposition": "inline",
+          "X-Content-Type-Options": "nosniff",
+        },
       },
-    }, (error) => {
-      if (error && !res.headersSent) next(error);
-    });
+      (error) => {
+        if (error && !res.headersSent) {
+          next(error);
+        }
+      }
+    );
   }),
 
   getMyNotes: asyncHandler(async (req, res) => {
@@ -124,7 +177,7 @@ export const noteController = {
       ...req.query,
       uploadedBy: req.user._id,
     });
-    
+
     res.json({
       success: true,
       data: result.data,
