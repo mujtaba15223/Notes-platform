@@ -48,6 +48,51 @@ const getExistingFilePath = (note) => {
   return filePath;
 };
 
+const streamCloudinaryFile = async (url, res, mimeType) => {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new AppError(
+      `Could not fetch file from Cloudinary (${response.status})`,
+      response.status
+    );
+  }
+
+  res.setHeader("Content-Type", mimeType);
+  res.setHeader("Content-Disposition", "inline");
+  res.setHeader("X-Content-Type-Options", "nosniff");
+
+  if (response.headers.get("content-length")) {
+    res.setHeader(
+      "Content-Length",
+      response.headers.get("content-length")
+    );
+  }
+
+  if (!response.body) {
+    throw new AppError("Could not read file from Cloudinary", 502);
+  }
+
+  const reader = response.body.getReader();
+
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+
+      if (done) {
+        break;
+      }
+
+      res.write(Buffer.from(value));
+    }
+
+    res.end();
+  } catch (error) {
+    reader.cancel().catch(() => {});
+    throw error;
+  }
+};
+
 export const noteController = {
   createNote: asyncHandler(async (req, res) => {
     if (!req.file) {
@@ -128,14 +173,56 @@ export const noteController = {
 
     // Cloudinary file
     if (note.fileUrl?.startsWith("http")) {
-      return res.redirect(note.fileUrl);
+      const response = await fetch(note.fileUrl);
+
+      if (!response.ok) {
+        throw new AppError(
+          `Could not fetch file from Cloudinary (${response.status})`,
+          response.status
+        );
+      }
+
+      res.setHeader(
+        "Content-Type",
+        response.headers.get("content-type") || "application/octet-stream"
+      );
+
+      res.setHeader(
+        "Content-Disposition",
+        `attachment; filename="${note.fileName}"`
+      );
+
+      if (response.headers.get("content-length")) {
+        res.setHeader(
+          "Content-Length",
+          response.headers.get("content-length")
+        );
+      }
+
+      if (!response.body) {
+        throw new AppError("Could not read file from Cloudinary", 502);
+      }
+
+      const reader = response.body.getReader();
+
+      while (true) {
+        const { done, value } = await reader.read();
+
+        if (done) {
+          break;
+        }
+
+        res.write(Buffer.from(value));
+      }
+
+      return res.end();
     }
 
     // Local file
     res.download(filePath, note.fileName);
   }),
 
-  viewNote: asyncHandler(async (req, res, next) => {
+  viewNote: asyncHandler(async (req, res) => {
     const note = await getAccessibleNote(req);
     const filePath = getExistingFilePath(note);
     const mimeType = inlineMimeTypes[note.fileType];
@@ -151,25 +238,21 @@ export const noteController = {
 
     // Cloudinary file
     if (note.fileUrl?.startsWith("http")) {
-      return res.redirect(note.fileUrl);
+      return streamCloudinaryFile(
+        note.fileUrl,
+        res,
+        mimeType
+      );
     }
 
     // Local file
-    res.sendFile(
-      filePath,
-      {
-        headers: {
-          "Content-Type": mimeType,
-          "Content-Disposition": "inline",
-          "X-Content-Type-Options": "nosniff",
-        },
+    res.sendFile(filePath, {
+      headers: {
+        "Content-Type": mimeType,
+        "Content-Disposition": "inline",
+        "X-Content-Type-Options": "nosniff",
       },
-      (error) => {
-        if (error && !res.headersSent) {
-          next(error);
-        }
-      }
-    );
+    });
   }),
 
   getMyNotes: asyncHandler(async (req, res) => {
