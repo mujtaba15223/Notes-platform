@@ -47,18 +47,6 @@ const fileTypeColors = {
   webp: "bg-green-100 text-green-700",
 };
 
-const previewableFileTypes = new Set([
-  "pdf",
-  "txt",
-  "md",
-  "jpg",
-  "jpeg",
-  "png",
-  "gif",
-  "webp",
-  "svg",
-]);
-
 export function NoteDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -69,7 +57,6 @@ export function NoteDetails() {
   const [showMenu, setShowMenu] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [editing, setEditing] = useState(false);
-  const [previewOpen, setPreviewOpen] = useState(false);
   const [editForm, setEditForm] = useState({
     title: "",
     description: "",
@@ -118,17 +105,6 @@ export function NoteDetails() {
     } catch (error) {
       toast.error("Failed to download");
     }
-  };
-
-  const handleViewOnline = () => {
-    if (!previewableFileTypes.has(note.fileType?.toLowerCase())) {
-      toast.error(
-        "This file type is kept private and cannot be previewed in the browser. Download it to open it."
-      );
-      return;
-    }
-
-    setPreviewOpen((open) => !open);
   };
 
   const handleDelete = async () => {
@@ -393,21 +369,16 @@ export function NoteDetails() {
               className="btn-primary flex-1 sm:flex-none"
             >
               <Download className="w-5 h-5 mr-2" />
-              Download (
+              Download to View (
               {note.fileSize
                 ? `${(note.fileSize / (1024 * 1024)).toFixed(1)} MB`
                 : ""}
               )
             </button>
 
-            <button
-              type="button"
-              onClick={handleViewOnline}
-              className="btn-secondary flex-1 sm:flex-none"
-            >
-              <Eye className="w-5 h-5 mr-2" />
-              {previewOpen ? "Hide Preview" : "View Online"}
-            </button>
+            <p className="w-full text-sm text-gray-500">
+              Online preview is not available. Download the file to view it.
+            </p>
 
             {canEdit && (
               <div className="relative ml-auto">
@@ -470,30 +441,6 @@ export function NoteDetails() {
         )}
       </article>
 
-      {previewOpen && (
-        <section
-          className="card mt-6 overflow-hidden"
-          aria-label="Note preview"
-        >
-          <div className="flex items-center justify-between border-b border-gray-100 px-4 py-3">
-            <h2 className="font-semibold text-gray-900">{note.title}</h2>
-
-            <button
-              type="button"
-              onClick={() => setPreviewOpen(false)}
-              className="text-sm text-gray-600 hover:text-gray-900"
-            >
-              Close preview
-            </button>
-          </div>
-
-          <iframe
-            title={`${note.title} preview`}
-            src={`/api/notes/${id}/view`}
-            className="h-[75vh] w-full bg-gray-100"
-          />
-        </section>
-      )}
     </div>
   );
 }

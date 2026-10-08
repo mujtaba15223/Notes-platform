@@ -6,18 +6,6 @@ import { env } from "../config/env.js";
 import fs from "fs";
 import path from "path";
 
-const inlineMimeTypes = {
-  pdf: "application/pdf",
-  txt: "text/plain; charset=utf-8",
-  md: "text/markdown; charset=utf-8",
-  jpg: "image/jpeg",
-  jpeg: "image/jpeg",
-  png: "image/png",
-  gif: "image/gif",
-  webp: "image/webp",
-  svg: "image/svg+xml",
-};
-
 const getAccessibleNote = async (req) => {
   const note = await noteService.getNoteById(req.params.id);
 
@@ -54,24 +42,6 @@ const getExistingFilePath = (note) => {
   }
 
   throw new AppError("The note file is missing from storage", 404);
-};
-
-const sendCloudinaryFile = async (url, res, mimeType) => {
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw new AppError(
-      `Could not fetch file from Cloudinary (${response.status})`,
-      response.status
-    );
-  }
-
-  const file = Buffer.from(await response.arrayBuffer());
-  res.setHeader("Content-Type", mimeType);
-  res.setHeader("Content-Disposition", "inline");
-  res.setHeader("Content-Length", file.length);
-  res.setHeader("X-Content-Type-Options", "nosniff");
-  res.end(file);
 };
 
 export const noteController = {
@@ -202,35 +172,7 @@ export const noteController = {
   }),
 
   viewNote: asyncHandler(async (req, res) => {
-    const note = await getAccessibleNote(req);
-    const filePath = getExistingFilePath(note);
-    const mimeType = inlineMimeTypes[note.fileType];
-
-    if (!mimeType) {
-      throw new AppError(
-        "This file type cannot be previewed in the browser. Download it to view.",
-        415
-      );
-    }
-
-    await noteService.incrementViews(req.params.id);
-
-    if (note.fileUrl?.startsWith("http")) {
-      return sendCloudinaryFile(
-        note.fileUrl,
-        res,
-        mimeType
-      );
-    }
-
-    // Local file
-    res.sendFile(filePath, {
-      headers: {
-        "Content-Type": mimeType,
-        "Content-Disposition": "inline",
-        "X-Content-Type-Options": "nosniff",
-      },
-    });
+    res.redirect(302, `${req.baseUrl}/${encodeURIComponent(req.params.id)}/download`);
   }),
 
   getMyNotes: asyncHandler(async (req, res) => {
