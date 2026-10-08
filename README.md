@@ -540,14 +540,4 @@ The view endpoint serves browser-previewable PDFs, text files, and images inline
 
 MIT License - feel free to use for learning or production!
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch
-3. Commit changes
-4. Push to branch
-5. Open Pull Request
-
----
-
 **Built with ❤️ for students everywhere**
