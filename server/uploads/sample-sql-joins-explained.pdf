@@ -1,0 +1,59 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 2111 >>
+stream
+BT /F2 18 Tf 54 744 Td (SQL Joins Explained) Tj ET
+BT /F1 9 Tf 54 707 Td (Subject: Database Management Systems Topic: SQL) Tj ET
+BT /F2 13 Tf 54 679 Td (Overview) Tj ET
+BT /F1 10 Tf 54 656 Td (Inner, left, right, full outer joins with examples and performance tips) Tj ET
+BT /F2 12 Tf 54 633 Td (Join fundamentals) Tj ET
+BT /F1 10 Tf 54 612 Td (- A join combines rows using a predicate, commonly a foreign-key to primary-key equality.) Tj ET
+BT /F1 10 Tf 54 595 Td (- INNER JOIN returns matching row pairs only.) Tj ET
+BT /F1 10 Tf 54 578 Td (- LEFT JOIN returns every left row and fills right-side columns with NULL when no match exists.) Tj ET
+BT /F2 12 Tf 54 539 Td (Join variants) Tj ET
+BT /F1 10 Tf 54 518 Td (- RIGHT JOIN preserves all right-side rows; swapping table order often makes the same query) Tj ET
+BT /F1 10 Tf 54 503 Td (easier to read as LEFT JOIN.) Tj ET
+BT /F1 10 Tf 54 486 Td (- FULL OUTER JOIN preserves unmatched rows from both sides where the database supports it.) Tj ET
+BT /F1 10 Tf 54 469 Td (- CROSS JOIN produces every pair of rows and can grow to the product of both table sizes.) Tj ET
+BT /F2 12 Tf 54 430 Td (Example and NULL behavior) Tj ET
+BT /F1 10 Tf 54 409 Td (- SELECT s.name, e.course_id FROM students s LEFT JOIN enrollments e ON e.student_id = s.id) Tj ET
+BT /F1 10 Tf 54 394 Td (preserves students with no enrollment.) Tj ET
+BT /F1 10 Tf 54 377 Td (- A WHERE condition on the right table can remove NULL-extended rows and effectively turn a left) Tj ET
+BT /F1 10 Tf 54 362 Td (join into an inner join.) Tj ET
+BT /F1 10 Tf 54 345 Td (- Put optional right-side filters in the ON clause when unmatched left rows must remain.) Tj ET
+BT /F2 12 Tf 54 306 Td (Performance) Tj ET
+BT /F1 10 Tf 54 285 Td (- Index join keys used for lookups and inspect the query plan before optimizing.) Tj ET
+BT /F1 10 Tf 54 268 Td (- Filter early when it preserves query meaning, and select only the columns needed.) Tj ET
+BT /F1 10 Tf 54 251 Td (- Check for duplicate join keys: one left row can match multiple right rows and increase result) Tj ET
+BT /F1 10 Tf 54 236 Td (cardinality.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002414 00000 n 
+0000002484 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2559
+%%EOF

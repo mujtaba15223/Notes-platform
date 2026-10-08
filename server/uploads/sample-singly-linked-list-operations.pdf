@@ -1,0 +1,61 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 2227 >>
+stream
+BT /F2 18 Tf 54 744 Td (Singly Linked List Operations) Tj ET
+BT /F1 9 Tf 54 707 Td (Subject: Data Structures Topic: Linked Lists) Tj ET
+BT /F2 13 Tf 54 679 Td (Overview) Tj ET
+BT /F1 10 Tf 54 656 Td (Complete guide to singly linked list insertion, deletion, and traversal) Tj ET
+BT /F2 12 Tf 54 633 Td (Node structure) Tj ET
+BT /F1 10 Tf 54 612 Td (- Each singly linked node contains a value and a reference to the next node; the final node) Tj ET
+BT /F1 10 Tf 54 597 Td (points to null.) Tj ET
+BT /F1 10 Tf 54 580 Td (- A head reference identifies the first node. Maintaining a tail reference makes append O\(1\).) Tj ET
+BT /F1 10 Tf 54 563 Td (- Unlike arrays, nodes need not be adjacent in memory and do not support constant-time indexed) Tj ET
+BT /F1 10 Tf 54 548 Td (access.) Tj ET
+BT /F2 12 Tf 54 509 Td (Insertion and deletion) Tj ET
+BT /F1 10 Tf 54 488 Td (- Insert at the head by linking the new node to the old head, then updating head; this is O\(1\).) Tj ET
+BT /F1 10 Tf 54 471 Td (- Insert after a known node by changing two links; finding a position first still costs O\(n\).) Tj ET
+BT /F1 10 Tf 54 454 Td (- Deleting after a known predecessor is O\(1\); deleting by value requires a traversal and) Tj ET
+BT /F1 10 Tf 54 439 Td (predecessor tracking.) Tj ET
+BT /F2 12 Tf 54 400 Td (Traversal and complexity) Tj ET
+BT /F1 10 Tf 54 379 Td (- Walk from head by following next until null; traversal and search are O\(n\).) Tj ET
+BT /F1 10 Tf 54 362 Td (- A list uses O\(n\) node storage plus one or more link fields per node.) Tj ET
+BT /F1 10 Tf 54 345 Td (- A singly linked list cannot move backward without another traversal; a doubly linked list) Tj ET
+BT /F1 10 Tf 54 330 Td (stores a previous link at extra memory cost.) Tj ET
+BT /F2 12 Tf 54 291 Td (Correctness checks) Tj ET
+BT /F1 10 Tf 54 270 Td (- Handle empty-list insertion and deletion, single-node deletion, head changes, and tail) Tj ET
+BT /F1 10 Tf 54 255 Td (changes.) Tj ET
+BT /F1 10 Tf 54 238 Td (- Never dereference a null link; detach removed nodes when the language/runtime requires) Tj ET
+BT /F1 10 Tf 54 223 Td (cleanup.) Tj ET
+BT /F1 10 Tf 54 206 Td (- Use slow and fast pointers to detect cycles in O\(n\) time and O\(1\) extra space.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002530 00000 n 
+0000002600 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2675
+%%EOF

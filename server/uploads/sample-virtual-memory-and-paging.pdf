@@ -1,0 +1,61 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 2292 >>
+stream
+BT /F2 18 Tf 54 744 Td (Virtual Memory and Paging) Tj ET
+BT /F1 9 Tf 54 707 Td (Subject: Operating Systems Topic: Memory Management) Tj ET
+BT /F2 13 Tf 54 679 Td (Overview) Tj ET
+BT /F1 10 Tf 54 656 Td (Page tables, TLB, page replacement algorithms \(FIFO, LRU, Optimal\)) Tj ET
+BT /F2 12 Tf 54 633 Td (Address translation) Tj ET
+BT /F1 10 Tf 54 612 Td (- Virtual memory maps a process's virtual address space to physical frames, isolating processes) Tj ET
+BT /F1 10 Tf 54 597 Td (and allowing address spaces larger than RAM.) Tj ET
+BT /F1 10 Tf 54 580 Td (- A virtual address splits into a virtual page number and page offset; the offset is unchanged) Tj ET
+BT /F1 10 Tf 54 565 Td (during translation.) Tj ET
+BT /F1 10 Tf 54 548 Td (- A page table maps virtual pages to frames and stores permission and status bits.) Tj ET
+BT /F2 12 Tf 54 509 Td (TLB and page faults) Tj ET
+BT /F1 10 Tf 54 488 Td (- A translation lookaside buffer caches recent page-table entries to reduce translation latency.) Tj ET
+BT /F1 10 Tf 54 471 Td (- A TLB miss requires a page-table walk but is not automatically a page fault.) Tj ET
+BT /F1 10 Tf 54 454 Td (- A page fault occurs when a referenced page is not resident; the OS loads it, updates mappings,) Tj ET
+BT /F1 10 Tf 54 439 Td (and retries the instruction.) Tj ET
+BT /F2 12 Tf 54 400 Td (Replacement algorithms) Tj ET
+BT /F1 10 Tf 54 379 Td (- FIFO evicts the oldest loaded page and can exhibit Belady's anomaly.) Tj ET
+BT /F1 10 Tf 54 362 Td (- LRU evicts the least recently used page and approximates locality, though exact tracking can) Tj ET
+BT /F1 10 Tf 54 347 Td (be costly.) Tj ET
+BT /F1 10 Tf 54 330 Td (- Optimal replacement evicts the page whose next use is farthest away; it is a theoretical) Tj ET
+BT /F1 10 Tf 54 315 Td (benchmark, not implementable without future knowledge.) Tj ET
+BT /F2 12 Tf 54 276 Td (Worked calculation) Tj ET
+BT /F1 10 Tf 54 255 Td (- For page size 4096 bytes, virtual address 0x12345 has page number 0x12 and offset 0x345.) Tj ET
+BT /F1 10 Tf 54 238 Td (- If page 0x12 maps to frame 7, the physical address is frame base 7*4096 plus offset 0x345.) Tj ET
+BT /F1 10 Tf 54 221 Td (- Track page references and resident frames explicitly when counting faults for a replacement) Tj ET
+BT /F1 10 Tf 54 206 Td (policy.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002595 00000 n 
+0000002665 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2740
+%%EOF

@@ -1,0 +1,59 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 2141 >>
+stream
+BT /F2 18 Tf 54 744 Td (Linear Regression from Scratch) Tj ET
+BT /F1 9 Tf 54 707 Td (Subject: Machine Learning Topic: Supervised Learning) Tj ET
+BT /F2 13 Tf 54 679 Td (Overview) Tj ET
+BT /F1 10 Tf 54 656 Td (Mathematical derivation, gradient descent implementation, and evaluation) Tj ET
+BT /F2 12 Tf 54 633 Td (Model and loss) Tj ET
+BT /F1 10 Tf 54 612 Td (- For one feature, linear regression predicts y_hat = w*x + b; for multiple features, y_hat = Xw) Tj ET
+BT /F1 10 Tf 54 597 Td (+ b.) Tj ET
+BT /F1 10 Tf 54 580 Td (- Mean squared error is the mean of \(prediction - target\) squared and penalizes large errors) Tj ET
+BT /F1 10 Tf 54 565 Td (strongly.) Tj ET
+BT /F1 10 Tf 54 548 Td (- Fit parameters by minimizing the loss on training data, then evaluate on held-out data.) Tj ET
+BT /F2 12 Tf 54 509 Td (Gradient descent) Tj ET
+BT /F1 10 Tf 54 488 Td (- For MSE with n examples, gradient for w is \(2/n\) times X-transpose multiplied by prediction) Tj ET
+BT /F1 10 Tf 54 473 Td (error; gradient for b is \(2/n\) times the sum of errors.) Tj ET
+BT /F1 10 Tf 54 456 Td (- Update each parameter by subtracting learning_rate times its gradient.) Tj ET
+BT /F1 10 Tf 54 439 Td (- A learning rate that is too high can diverge; one that is too low converges slowly.) Tj ET
+BT /F2 12 Tf 54 400 Td (Practical workflow) Tj ET
+BT /F1 10 Tf 54 379 Td (- Standardize features when scales differ greatly to make gradient descent better conditioned.) Tj ET
+BT /F1 10 Tf 54 362 Td (- Add an intercept term or keep b as a separate parameter.) Tj ET
+BT /F1 10 Tf 54 345 Td (- Plot training loss across iterations; a steadily falling loss is a useful sanity check.) Tj ET
+BT /F2 12 Tf 54 306 Td (Evaluation and assumptions) Tj ET
+BT /F1 10 Tf 54 285 Td (- MAE is the mean absolute error; RMSE is the square root of MSE and remains in target units.) Tj ET
+BT /F1 10 Tf 54 268 Td (- R-squared compares model error with predicting the target mean; it is not proof of causality.) Tj ET
+BT /F1 10 Tf 54 251 Td (- Inspect residuals for nonlinearity, changing variance, outliers, and leakage between training) Tj ET
+BT /F1 10 Tf 54 236 Td (and test data.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002444 00000 n 
+0000002514 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2589
+%%EOF

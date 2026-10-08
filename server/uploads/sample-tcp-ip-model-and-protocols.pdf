@@ -1,0 +1,64 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 2415 >>
+stream
+BT /F2 18 Tf 54 744 Td (TCP/IP Model and Protocols) Tj ET
+BT /F1 9 Tf 54 707 Td (Subject: Computer Networks Topic: Transport Layer) Tj ET
+BT /F2 13 Tf 54 679 Td (Overview) Tj ET
+BT /F1 10 Tf 54 656 Td (Four-layer model, TCP vs UDP, three-way handshake, congestion control) Tj ET
+BT /F2 12 Tf 54 633 Td (Four-layer model) Tj ET
+BT /F1 10 Tf 54 612 Td (- Application protocols such as HTTP, DNS, and SMTP use transport services.) Tj ET
+BT /F1 10 Tf 54 595 Td (- Transport layer TCP provides reliable ordered byte streams; UDP provides datagrams without) Tj ET
+BT /F1 10 Tf 54 580 Td (built-in delivery guarantees.) Tj ET
+BT /F1 10 Tf 54 563 Td (- Internet layer IP addresses and forwards packets across networks; link layer handles delivery) Tj ET
+BT /F1 10 Tf 54 548 Td (on a local medium.) Tj ET
+BT /F2 12 Tf 54 509 Td (TCP connection and reliability) Tj ET
+BT /F1 10 Tf 54 488 Td (- The three-way handshake is SYN, SYN-ACK, ACK; it synchronizes sequence numbers and establishes) Tj ET
+BT /F1 10 Tf 54 473 Td (connection state.) Tj ET
+BT /F1 10 Tf 54 456 Td (- TCP numbers bytes, acknowledges received data, retransmits lost segments, and uses a receive) Tj ET
+BT /F1 10 Tf 54 441 Td (window for flow control.) Tj ET
+BT /F1 10 Tf 54 424 Td (- Congestion control adjusts sending behavior based on network congestion; flow control protects) Tj ET
+BT /F1 10 Tf 54 409 Td (the receiver.) Tj ET
+BT /F2 12 Tf 54 370 Td (TCP versus UDP) Tj ET
+BT /F1 10 Tf 54 349 Td (- Use TCP when reliable ordered delivery is useful, such as web pages and file transfer.) Tj ET
+BT /F1 10 Tf 54 332 Td (- UDP suits applications that implement their own timing or loss handling, such as real-time) Tj ET
+BT /F1 10 Tf 54 317 Td (voice or some DNS queries.) Tj ET
+BT /F1 10 Tf 54 300 Td (- Neither protocol is universally faster; measure latency, overhead, and application) Tj ET
+BT /F1 10 Tf 54 285 Td (requirements.) Tj ET
+BT /F2 12 Tf 54 246 Td (Troubleshooting) Tj ET
+BT /F1 10 Tf 54 225 Td (- DNS resolves names to records; a DNS failure can prevent a connection before TCP starts.) Tj ET
+BT /F1 10 Tf 54 208 Td (- A successful TCP handshake does not prove that an application request or TLS negotiation) Tj ET
+BT /F1 10 Tf 54 193 Td (succeeded.) Tj ET
+BT /F1 10 Tf 54 176 Td (- Use packet captures to distinguish name resolution, routing, handshake, retransmission, and) Tj ET
+BT /F1 10 Tf 54 161 Td (application-layer failures.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002718 00000 n 
+0000002788 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2863
+%%EOF

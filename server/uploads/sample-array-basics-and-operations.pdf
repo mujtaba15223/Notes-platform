@@ -1,0 +1,60 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 2172 >>
+stream
+BT /F2 18 Tf 54 744 Td (Array Basics and Operations) Tj ET
+BT /F1 9 Tf 54 707 Td (Subject: Data Structures Topic: Arrays) Tj ET
+BT /F2 13 Tf 54 679 Td (Overview) Tj ET
+BT /F1 10 Tf 54 656 Td (Comprehensive notes on array fundamentals, time complexity, and common operations) Tj ET
+BT /F2 12 Tf 54 633 Td (Array model and complexity) Tj ET
+BT /F1 10 Tf 54 612 Td (- An array stores values in contiguous memory; index i is at base address plus i multiplied by) Tj ET
+BT /F1 10 Tf 54 597 Td (element size.) Tj ET
+BT /F1 10 Tf 54 580 Td (- Reading or replacing an element by index is O\(1\). Searching an unsorted array is O\(n\).) Tj ET
+BT /F1 10 Tf 54 563 Td (- Inserting or removing in the middle is O\(n\) because later elements must shift.) Tj ET
+BT /F2 12 Tf 54 524 Td (Core operations) Tj ET
+BT /F1 10 Tf 54 503 Td (- Traversal visits each element once, so its time is O\(n\) and extra space is O\(1\).) Tj ET
+BT /F1 10 Tf 54 486 Td (- Linear search works on any array; binary search requires sorted data and halves the remaining) Tj ET
+BT /F1 10 Tf 54 471 Td (range each step.) Tj ET
+BT /F1 10 Tf 54 454 Td (- Two-pointer scans can solve sorted pair and partition problems in O\(n\) after sorting or when) Tj ET
+BT /F1 10 Tf 54 439 Td (the input is already ordered.) Tj ET
+BT /F2 12 Tf 54 400 Td (Worked example) Tj ET
+BT /F1 10 Tf 54 379 Td (- For [4, 7, 9, 12], index 2 contains 9; inserting 8 at index 2 shifts 9 and 12 to the right.) Tj ET
+BT /F1 10 Tf 54 362 Td (- To find 12 in a sorted array, binary search checks the middle, discards the lower half, and) Tj ET
+BT /F1 10 Tf 54 347 Td (repeats; the search takes O\(log n\).) Tj ET
+BT /F1 10 Tf 54 330 Td (- Choose arrays when fast indexed access and cache locality matter more than frequent middle) Tj ET
+BT /F1 10 Tf 54 315 Td (insertions.) Tj ET
+BT /F2 12 Tf 54 276 Td (Review checklist) Tj ET
+BT /F1 10 Tf 54 255 Td (- Check index bounds and empty-array cases before accessing an element.) Tj ET
+BT /F1 10 Tf 54 238 Td (- Distinguish an array's length from its final valid index, which is length minus one.) Tj ET
+BT /F1 10 Tf 54 221 Td (- State time and auxiliary-space complexity for each operation.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002475 00000 n 
+0000002545 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2620
+%%EOF

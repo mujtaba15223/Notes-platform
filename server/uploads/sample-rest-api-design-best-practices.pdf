@@ -1,0 +1,66 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 2545 >>
+stream
+BT /F2 18 Tf 54 744 Td (REST API Design Best Practices) Tj ET
+BT /F1 9 Tf 54 707 Td (Subject: Web Development Topic: Node.js) Tj ET
+BT /F2 13 Tf 54 679 Td (Overview) Tj ET
+BT /F1 10 Tf 54 656 Td (Resource naming, HTTP methods, status codes, versioning, pagination) Tj ET
+BT /F2 12 Tf 54 633 Td (Resources and methods) Tj ET
+BT /F1 10 Tf 54 612 Td (- Model URLs as nouns such as /notes and /notes/{id}; use HTTP methods to describe the) Tj ET
+BT /F1 10 Tf 54 597 Td (operation.) Tj ET
+BT /F1 10 Tf 54 580 Td (- GET reads, POST creates or triggers a subordinate action, PUT replaces, PATCH partially) Tj ET
+BT /F1 10 Tf 54 565 Td (updates, and DELETE removes.) Tj ET
+BT /F1 10 Tf 54 548 Td (- Keep representations consistent and return the created resource with 201 Created when useful.) Tj ET
+BT /F2 12 Tf 54 509 Td (Status codes and errors) Tj ET
+BT /F1 10 Tf 54 488 Td (- Use 200 for successful reads or updates, 201 for creation, 204 for success without a body, and) Tj ET
+BT /F1 10 Tf 54 473 Td (400 for invalid input.) Tj ET
+BT /F1 10 Tf 54 456 Td (- Use 401 for unauthenticated requests, 403 for forbidden actions, 404 for missing resources,) Tj ET
+BT /F1 10 Tf 54 441 Td (and 409 for conflicts.) Tj ET
+BT /F1 10 Tf 54 424 Td (- Return a stable error shape with a clear message; do not expose stack traces or secrets to) Tj ET
+BT /F1 10 Tf 54 409 Td (clients.) Tj ET
+BT /F2 12 Tf 54 370 Td (Validation and security) Tj ET
+BT /F1 10 Tf 54 349 Td (- Validate identifiers, body fields, query parameters, file sizes, and uploaded content on the) Tj ET
+BT /F1 10 Tf 54 334 Td (server.) Tj ET
+BT /F1 10 Tf 54 317 Td (- Enforce authorization for each resource, not just for a route group; never trust a) Tj ET
+BT /F1 10 Tf 54 302 Td (client-supplied owner or role.) Tj ET
+BT /F1 10 Tf 54 285 Td (- Use HTTPS in production, secure cookies or tokens, rate limits for sensitive endpoints, and) Tj ET
+BT /F1 10 Tf 54 270 Td (safe output handling.) Tj ET
+BT /F2 12 Tf 54 231 Td (Pagination and operations) Tj ET
+BT /F1 10 Tf 54 210 Td (- Use bounded pagination and return total or next-page metadata; reject invalid or excessive) Tj ET
+BT /F1 10 Tf 54 195 Td (limits.) Tj ET
+BT /F1 10 Tf 54 178 Td (- Allowlist sortable fields and filter parameters rather than passing arbitrary client keys to) Tj ET
+BT /F1 10 Tf 54 163 Td (database operations.) Tj ET
+BT /F1 10 Tf 54 146 Td (- Document endpoints, request and response shapes, authentication, and expected error codes; log) Tj ET
+BT /F1 10 Tf 54 131 Td (request IDs without logging credentials.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002848 00000 n 
+0000002918 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2993
+%%EOF

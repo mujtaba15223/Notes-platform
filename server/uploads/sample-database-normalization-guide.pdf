@@ -1,0 +1,64 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 2432 >>
+stream
+BT /F2 18 Tf 54 744 Td (Database Normalization Guide) Tj ET
+BT /F1 9 Tf 54 707 Td (Subject: Database Management Systems Topic: Normalization) Tj ET
+BT /F2 13 Tf 54 679 Td (Overview) Tj ET
+BT /F1 10 Tf 54 656 Td (Step-by-step normalization from 1NF to BCNF with practical examples) Tj ET
+BT /F2 12 Tf 54 633 Td (Why normalize?) Tj ET
+BT /F1 10 Tf 54 612 Td (- Normalization organizes relational data to reduce duplicate facts and prevent insert, update,) Tj ET
+BT /F1 10 Tf 54 597 Td (and delete anomalies.) Tj ET
+BT /F1 10 Tf 54 580 Td (- A functional dependency X -> Y means each X value determines exactly one Y value.) Tj ET
+BT /F1 10 Tf 54 563 Td (- Decompose tables carefully and preserve keys and dependencies where possible.) Tj ET
+BT /F2 12 Tf 54 524 Td (Normal forms) Tj ET
+BT /F1 10 Tf 54 503 Td (- 1NF requires atomic column values and rows identifiable by a key; do not store repeating) Tj ET
+BT /F1 10 Tf 54 488 Td (groups in one field.) Tj ET
+BT /F1 10 Tf 54 471 Td (- 2NF requires 1NF and every non-key attribute to depend on the whole candidate key, not a) Tj ET
+BT /F1 10 Tf 54 456 Td (proper subset.) Tj ET
+BT /F1 10 Tf 54 439 Td (- 3NF requires 2NF and removes transitive dependencies of non-key attributes on a key.) Tj ET
+BT /F1 10 Tf 54 422 Td (- BCNF requires every determinant in a nontrivial functional dependency to be a superkey.) Tj ET
+BT /F2 12 Tf 54 383 Td (Example) Tj ET
+BT /F1 10 Tf 54 362 Td (- If Enrollment\(student_id, course_id, student_name, grade\) uses a composite key and) Tj ET
+BT /F1 10 Tf 54 347 Td (student_name depends only on student_id, it violates 2NF.) Tj ET
+BT /F1 10 Tf 54 330 Td (- Move student attributes to Student\(student_id, student_name\); keep course-specific grade in) Tj ET
+BT /F1 10 Tf 54 315 Td (Enrollment.) Tj ET
+BT /F1 10 Tf 54 298 Td (- The decomposition avoids repeating a student's name for each course and keeps updates) Tj ET
+BT /F1 10 Tf 54 283 Td (consistent.) Tj ET
+BT /F2 12 Tf 54 244 Td (Design trade-offs) Tj ET
+BT /F1 10 Tf 54 223 Td (- Use foreign keys and constraints to enforce relationships and valid references.) Tj ET
+BT /F1 10 Tf 54 206 Td (- Normalization is a correctness baseline; denormalization may be justified for measured read) Tj ET
+BT /F1 10 Tf 54 191 Td (performance.) Tj ET
+BT /F1 10 Tf 54 174 Td (- Document the source of duplicated values and keep them synchronized if denormalization is) Tj ET
+BT /F1 10 Tf 54 159 Td (used.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002735 00000 n 
+0000002805 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2880
+%%EOF

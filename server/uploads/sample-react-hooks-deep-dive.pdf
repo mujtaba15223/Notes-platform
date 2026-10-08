@@ -1,0 +1,62 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 2341 >>
+stream
+BT /F2 18 Tf 54 744 Td (React Hooks Deep Dive) Tj ET
+BT /F1 9 Tf 54 707 Td (Subject: Web Development Topic: React) Tj ET
+BT /F2 13 Tf 54 679 Td (Overview) Tj ET
+BT /F1 10 Tf 54 656 Td (useState, useEffect, useContext, useReducer, custom hooks patterns) Tj ET
+BT /F2 12 Tf 54 633 Td (State and effects) Tj ET
+BT /F1 10 Tf 54 612 Td (- useState adds component state; the setter schedules a render and functional updates avoid) Tj ET
+BT /F1 10 Tf 54 597 Td (stale values when the next state depends on the previous one.) Tj ET
+BT /F1 10 Tf 54 580 Td (- useEffect synchronizes with external systems after rendering; include every reactive value) Tj ET
+BT /F1 10 Tf 54 565 Td (read by the effect in its dependency list.) Tj ET
+BT /F1 10 Tf 54 548 Td (- Return cleanup from an effect to unsubscribe, clear timers, or cancel obsolete work.) Tj ET
+BT /F2 12 Tf 54 509 Td (Context and reducers) Tj ET
+BT /F1 10 Tf 54 488 Td (- useContext reads the nearest provider value and is useful for shared state such as the) Tj ET
+BT /F1 10 Tf 54 473 Td (authenticated user.) Tj ET
+BT /F1 10 Tf 54 456 Td (- useReducer centralizes transitions as reducer\(state, action\) and can make multi-step state) Tj ET
+BT /F1 10 Tf 54 441 Td (updates easier to test.) Tj ET
+BT /F1 10 Tf 54 424 Td (- Keep context values stable when appropriate to avoid unnecessary consumer renders.) Tj ET
+BT /F2 12 Tf 54 385 Td (Custom hooks and rules) Tj ET
+BT /F1 10 Tf 54 364 Td (- A custom hook is a function named with the use prefix that composes other hooks and shares) Tj ET
+BT /F1 10 Tf 54 349 Td (stateful logic.) Tj ET
+BT /F1 10 Tf 54 332 Td (- Call hooks only at the top level of a React component or custom hook, never conditionally or) Tj ET
+BT /F1 10 Tf 54 317 Td (inside loops.) Tj ET
+BT /F1 10 Tf 54 300 Td (- Hooks share logic, not one shared state instance; each component invocation has its own state.) Tj ET
+BT /F2 12 Tf 54 261 Td (Common mistakes) Tj ET
+BT /F1 10 Tf 54 240 Td (- Do not omit effect dependencies to silence lint warnings; restructure the effect or stabilize) Tj ET
+BT /F1 10 Tf 54 225 Td (callbacks when necessary.) Tj ET
+BT /F1 10 Tf 54 208 Td (- Avoid using effects to calculate values that can be derived during render.) Tj ET
+BT /F1 10 Tf 54 191 Td (- Use stable keys for list items so React can preserve the intended component identity.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002644 00000 n 
+0000002714 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2789
+%%EOF

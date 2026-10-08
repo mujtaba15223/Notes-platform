@@ -1,0 +1,59 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 2108 >>
+stream
+BT /F2 18 Tf 54 744 Td (Binary Search Tree Implementation) Tj ET
+BT /F1 9 Tf 54 707 Td (Subject: Data Structures Topic: Trees) Tj ET
+BT /F2 13 Tf 54 679 Td (Overview) Tj ET
+BT /F1 10 Tf 54 656 Td (BST properties, insertion, deletion, and balancing techniques) Tj ET
+BT /F2 12 Tf 54 633 Td (BST invariant) Tj ET
+BT /F1 10 Tf 54 612 Td (- For each node, values in its left subtree are smaller and values in its right subtree are) Tj ET
+BT /F1 10 Tf 54 597 Td (larger, subject to the chosen duplicate policy.) Tj ET
+BT /F1 10 Tf 54 580 Td (- Search, insert, and delete take O\(h\), where h is tree height; a skewed tree can have h = n.) Tj ET
+BT /F1 10 Tf 54 563 Td (- An in-order traversal returns keys in sorted order and runs in O\(n\).) Tj ET
+BT /F2 12 Tf 54 524 Td (Operations) Tj ET
+BT /F1 10 Tf 54 503 Td (- Search follows one branch at each comparison until a matching key or null is reached.) Tj ET
+BT /F1 10 Tf 54 486 Td (- Deleting a leaf removes it directly; deleting a node with one child links its parent to that) Tj ET
+BT /F1 10 Tf 54 471 Td (child.) Tj ET
+BT /F1 10 Tf 54 454 Td (- For two children, replace with the in-order successor \(minimum of the right subtree\) or) Tj ET
+BT /F1 10 Tf 54 439 Td (predecessor, then remove that replacement node.) Tj ET
+BT /F2 12 Tf 54 400 Td (Balancing) Tj ET
+BT /F1 10 Tf 54 379 Td (- A balanced tree keeps height O\(log n\), giving logarithmic search and update operations.) Tj ET
+BT /F1 10 Tf 54 362 Td (- AVL trees maintain a strict height-balance condition and use rotations after updates.) Tj ET
+BT /F1 10 Tf 54 345 Td (- Red-black trees enforce color invariants that bound height while requiring fewer rotations in) Tj ET
+BT /F1 10 Tf 54 330 Td (many workloads.) Tj ET
+BT /F2 12 Tf 54 291 Td (Testing) Tj ET
+BT /F1 10 Tf 54 270 Td (- Test empty trees, root deletion, missing keys, duplicate keys, and ascending insertion order.) Tj ET
+BT /F1 10 Tf 54 253 Td (- After every mutation, verify the ordering invariant and the node count.) Tj ET
+BT /F1 10 Tf 54 236 Td (- Use iterative traversal when recursion depth could exceed the runtime stack.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002411 00000 n 
+0000002481 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2556
+%%EOF

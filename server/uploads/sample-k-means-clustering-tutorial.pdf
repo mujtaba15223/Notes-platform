@@ -1,0 +1,62 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 2279 >>
+stream
+BT /F2 18 Tf 54 744 Td (K-Means Clustering Tutorial) Tj ET
+BT /F1 9 Tf 54 707 Td (Subject: Machine Learning Topic: Unsupervised Learning) Tj ET
+BT /F2 13 Tf 54 679 Td (Overview) Tj ET
+BT /F1 10 Tf 54 656 Td (Algorithm steps, initialization methods, elbow method, silhouette score) Tj ET
+BT /F2 12 Tf 54 633 Td (Objective) Tj ET
+BT /F1 10 Tf 54 612 Td (- K-means partitions numeric observations into k clusters by minimizing the sum of squared) Tj ET
+BT /F1 10 Tf 54 597 Td (distances to assigned centroids.) Tj ET
+BT /F1 10 Tf 54 580 Td (- Each cluster centroid is the coordinate-wise mean of its assigned points.) Tj ET
+BT /F1 10 Tf 54 563 Td (- Because distance depends on scale, standardize features when their units or ranges differ.) Tj ET
+BT /F2 12 Tf 54 524 Td (Algorithm) Tj ET
+BT /F1 10 Tf 54 503 Td (- Choose k initial centroids, often with k-means++ to spread starting points.) Tj ET
+BT /F1 10 Tf 54 486 Td (- Assign every observation to its nearest centroid, then recompute each centroid as its cluster) Tj ET
+BT /F1 10 Tf 54 471 Td (mean.) Tj ET
+BT /F1 10 Tf 54 454 Td (- Repeat assignment and update until assignments stop changing, centroid movement is small, or) Tj ET
+BT /F1 10 Tf 54 439 Td (an iteration limit is reached.) Tj ET
+BT /F2 12 Tf 54 400 Td (Choosing k and evaluating) Tj ET
+BT /F1 10 Tf 54 379 Td (- The elbow method plots within-cluster sum of squares against k and looks for diminishing) Tj ET
+BT /F1 10 Tf 54 364 Td (improvement.) Tj ET
+BT /F1 10 Tf 54 347 Td (- Silhouette score compares within-cluster cohesion with separation from the nearest other) Tj ET
+BT /F1 10 Tf 54 332 Td (cluster; values near 1 indicate clearer assignments.) Tj ET
+BT /F1 10 Tf 54 315 Td (- Run multiple initializations because the objective can converge to different local minima.) Tj ET
+BT /F2 12 Tf 54 276 Td (Limitations) Tj ET
+BT /F1 10 Tf 54 255 Td (- K-means is sensitive to outliers and favors roughly spherical, similarly sized clusters under) Tj ET
+BT /F1 10 Tf 54 240 Td (Euclidean distance.) Tj ET
+BT /F1 10 Tf 54 223 Td (- Empty clusters need a defined reinitialization policy.) Tj ET
+BT /F1 10 Tf 54 206 Td (- Use domain judgment and visual inspection; a metric alone does not establish that clusters are) Tj ET
+BT /F1 10 Tf 54 191 Td (meaningful.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002582 00000 n 
+0000002652 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2727
+%%EOF

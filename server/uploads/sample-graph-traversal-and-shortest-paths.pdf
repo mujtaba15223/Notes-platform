@@ -1,0 +1,61 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 2198 >>
+stream
+BT /F2 18 Tf 54 744 Td (Graph Traversal and Shortest Paths) Tj ET
+BT /F1 9 Tf 54 707 Td (Subject: Data Structures Topic: Graphs) Tj ET
+BT /F2 13 Tf 54 679 Td (Overview) Tj ET
+BT /F1 10 Tf 54 656 Td (An introduction to graph representations, breadth-first search, depth-first search, and shortest) Tj ET
+BT /F1 10 Tf 54 641 Td (paths) Tj ET
+BT /F2 12 Tf 54 618 Td (Graph representation) Tj ET
+BT /F1 10 Tf 54 597 Td (- A graph is G = \(V, E\); edges may be directed or undirected and may carry weights.) Tj ET
+BT /F1 10 Tf 54 580 Td (- An adjacency list uses O\(V + E\) space and is efficient for sparse graphs.) Tj ET
+BT /F1 10 Tf 54 563 Td (- An adjacency matrix uses O\(V squared\) space and gives O\(1\) edge-existence checks.) Tj ET
+BT /F2 12 Tf 54 524 Td (Breadth-first and depth-first search) Tj ET
+BT /F1 10 Tf 54 503 Td (- BFS uses a queue, marks vertices when enqueued, and finds shortest paths by edge count in an) Tj ET
+BT /F1 10 Tf 54 488 Td (unweighted graph.) Tj ET
+BT /F1 10 Tf 54 471 Td (- DFS uses recursion or an explicit stack and supports connected-component, cycle, and) Tj ET
+BT /F1 10 Tf 54 456 Td (topological-order algorithms.) Tj ET
+BT /F1 10 Tf 54 439 Td (- Both traversals run in O\(V + E\) with adjacency lists; store a visited set to avoid revisiting) Tj ET
+BT /F1 10 Tf 54 424 Td (cycles.) Tj ET
+BT /F2 12 Tf 54 385 Td (Shortest paths) Tj ET
+BT /F1 10 Tf 54 364 Td (- Dijkstra's algorithm finds nonnegative-weight shortest paths; with a binary heap it is) Tj ET
+BT /F1 10 Tf 54 349 Td (typically O\(\(V + E\) log V\).) Tj ET
+BT /F1 10 Tf 54 332 Td (- Bellman-Ford supports negative edges and detects reachable negative cycles in O\(VE\).) Tj ET
+BT /F1 10 Tf 54 315 Td (- For an unweighted graph, BFS gives shortest paths in O\(V + E\); reconstruct a route using) Tj ET
+BT /F1 10 Tf 54 300 Td (predecessor links.) Tj ET
+BT /F2 12 Tf 54 261 Td (Worked checks) Tj ET
+BT /F1 10 Tf 54 240 Td (- Initialize source distance to zero and all other distances to infinity.) Tj ET
+BT /F1 10 Tf 54 223 Td (- Relax edge \(u, v, w\) when distance[u] + w is smaller than distance[v].) Tj ET
+BT /F1 10 Tf 54 206 Td (- Do not use Dijkstra when negative edge weights are present.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002501 00000 n 
+0000002571 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2646
+%%EOF

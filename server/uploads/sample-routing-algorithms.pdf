@@ -1,0 +1,60 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 2187 >>
+stream
+BT /F2 18 Tf 54 744 Td (Routing Algorithms) Tj ET
+BT /F1 9 Tf 54 707 Td (Subject: Computer Networks Topic: Network Layer) Tj ET
+BT /F2 13 Tf 54 679 Td (Overview) Tj ET
+BT /F1 10 Tf 54 656 Td (Distance vector, link state, path vector routing with examples) Tj ET
+BT /F2 12 Tf 54 633 Td (Routing problem) Tj ET
+BT /F1 10 Tf 54 612 Td (- A router selects a next hop for a destination using a routing table and a route metric.) Tj ET
+BT /F1 10 Tf 54 595 Td (- Link-state protocols distribute topology information and compute shortest paths locally.) Tj ET
+BT /F1 10 Tf 54 578 Td (- Distance-vector protocols exchange reachability and costs with neighbors.) Tj ET
+BT /F2 12 Tf 54 539 Td (Algorithms) Tj ET
+BT /F1 10 Tf 54 518 Td (- Dijkstra's algorithm repeatedly finalizes the closest unsettled vertex and relaxes its) Tj ET
+BT /F1 10 Tf 54 503 Td (outgoing edges.) Tj ET
+BT /F1 10 Tf 54 486 Td (- Bellman-Ford uses repeated edge relaxation and can handle negative edge costs; networking) Tj ET
+BT /F1 10 Tf 54 471 Td (protocols add safeguards against instability.) Tj ET
+BT /F1 10 Tf 54 454 Td (- BGP is a path-vector protocol that exchanges reachability between autonomous systems and) Tj ET
+BT /F1 10 Tf 54 439 Td (applies policy, not merely shortest distance.) Tj ET
+BT /F2 12 Tf 54 400 Td (Worked shortest-path example) Tj ET
+BT /F1 10 Tf 54 379 Td (- For edges A-B=2, A-C=5, B-C=1, Dijkstra from A first sets B=2 and C=5.) Tj ET
+BT /F1 10 Tf 54 362 Td (- Processing B improves C to 3 via A-B-C; record B as C's predecessor.) Tj ET
+BT /F1 10 Tf 54 345 Td (- The path is reconstructed by following predecessor links backward from the destination.) Tj ET
+BT /F2 12 Tf 54 306 Td (Convergence and loops) Tj ET
+BT /F1 10 Tf 54 285 Td (- Distance-vector protocols can suffer count-to-infinity after failures; split horizon and) Tj ET
+BT /F1 10 Tf 54 270 Td (poisoned reverse reduce some loops.) Tj ET
+BT /F1 10 Tf 54 253 Td (- Link-state flooding and recomputation help converge after topology changes but require memory) Tj ET
+BT /F1 10 Tf 54 238 Td (and CPU.) Tj ET
+BT /F1 10 Tf 54 221 Td (- Administrative policy, equal-cost paths, and failure detection affect real route selection.) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000002490 00000 n 
+0000002560 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+2635
+%%EOF
