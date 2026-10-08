@@ -1,9 +1,21 @@
 import { useState, useEffect, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { notesAPI, adminAPI } from "../services/api";
 import { useAuth } from "../context/AuthContext";
-import { FileText, Eye, Download, User, Calendar, Tag, Clock, ArrowLeft, Edit, Trash2, MoreVertical, CheckCircle, XCircle } from "lucide-react";
+import {
+  FileText,
+  Eye,
+  Download,
+  User,
+  Calendar,
+  Tag,
+  Clock,
+  ArrowLeft,
+  Edit,
+  Trash2,
+  MoreVertical,
+  XCircle,
+} from "lucide-react";
 import { formatDistanceToNow, format } from "date-fns";
 import toast from "react-hot-toast";
 
@@ -35,23 +47,40 @@ const fileTypeColors = {
   webp: "bg-green-100 text-green-700",
 };
 
-const previewableFileTypes = new Set(["pdf", "txt", "md", "jpg", "jpeg", "png", "gif", "webp", "svg"]);
+const previewableFileTypes = new Set([
+  "pdf",
+  "txt",
+  "md",
+  "jpg",
+  "jpeg",
+  "png",
+  "gif",
+  "webp",
+  "svg",
+]);
 
 export function NoteDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { user, isAdmin } = useAuth();
+
   const [note, setNote] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [editing, setEditing] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
-  const [editForm, setEditForm] = useState({ title: "", description: "", tags: "" });
+  const [editForm, setEditForm] = useState({
+    title: "",
+    description: "",
+    tags: "",
+  });
+
   const fetchedNoteId = useRef(null);
 
   useEffect(() => {
     if (fetchedNoteId.current === id) return;
+
     fetchedNoteId.current = id;
     setLoading(true);
     fetchNote();
@@ -74,13 +103,17 @@ export function NoteDetails() {
     try {
       const response = await notesAPI.downloadNote(id);
       const url = window.URL.createObjectURL(new Blob([response.data]));
+
       const link = document.createElement("a");
       link.href = url;
       link.setAttribute("download", note.fileName);
+
       document.body.appendChild(link);
       link.click();
       link.remove();
+
       window.setTimeout(() => window.URL.revokeObjectURL(url), 1000);
+
       toast.success("Download started");
     } catch (error) {
       toast.error("Failed to download");
@@ -89,22 +122,27 @@ export function NoteDetails() {
 
   const handleViewOnline = () => {
     if (!previewableFileTypes.has(note.fileType)) {
-      toast.error("Online preview is unavailable for this file type. Download it to view.");
+      toast.error(
+        "Online preview is unavailable for this file type. Download it to view."
+      );
       return;
     }
+
     setPreviewOpen((open) => !open);
   };
 
   const handleDelete = async () => {
     if (!confirm("Are you sure you want to delete this note?")) return;
-    
+
     setDeleting(true);
+
     try {
       if (isAdmin) {
         await adminAPI.deleteNote(id);
       } else {
         await notesAPI.deleteNote(id);
       }
+
       toast.success("Note deleted");
       navigate("/notes");
     } catch (error) {
@@ -117,12 +155,14 @@ export function NoteDetails() {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
+
     try {
       await notesAPI.updateNote(id, {
         title: editForm.title,
         description: editForm.description,
         tags: editForm.tags,
       });
+
       toast.success("Note updated");
       setEditing(false);
       fetchNote();
@@ -138,6 +178,7 @@ export function NoteDetails() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="animate-pulse space-y-6">
           <div className="h-8 bg-gray-200 rounded w-1/3"></div>
+
           <div className="card p-6">
             <div className="h-32 bg-gray-200 rounded-lg"></div>
           </div>
@@ -149,7 +190,9 @@ export function NoteDetails() {
   if (!note) return null;
 
   const FileIcon = fileTypeIcons[note.fileType] || FileText;
-  const fileTypeColor = fileTypeColors[note.fileType] || "bg-gray-100 text-gray-700";
+
+  const fileTypeColor =
+    fileTypeColors[note.fileType] || "bg-gray-100 text-gray-700";
 
   if (editing) {
     return (
@@ -157,6 +200,7 @@ export function NoteDetails() {
         <form onSubmit={handleEditSubmit} className="card p-6 space-y-6">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-bold text-gray-900">Edit Note</h1>
+
             <button
               type="button"
               onClick={() => setEditing(false)}
@@ -167,12 +211,20 @@ export function NoteDetails() {
           </div>
 
           <div>
-            <label htmlFor="edit-title" className="label">Title</label>
+            <label htmlFor="edit-title" className="label">
+              Title
+            </label>
+
             <input
               id="edit-title"
               type="text"
               value={editForm.title}
-              onChange={(e) => setEditForm(prev => ({ ...prev, title: e.target.value }))}
+              onChange={(e) =>
+                setEditForm((prev) => ({
+                  ...prev,
+                  title: e.target.value,
+                }))
+              }
               className="input"
               maxLength={200}
               required
@@ -180,23 +232,39 @@ export function NoteDetails() {
           </div>
 
           <div>
-            <label htmlFor="edit-description" className="label">Description</label>
+            <label htmlFor="edit-description" className="label">
+              Description
+            </label>
+
             <textarea
               id="edit-description"
               value={editForm.description}
-              onChange={(e) => setEditForm(prev => ({ ...prev, description: e.target.value }))}
+              onChange={(e) =>
+                setEditForm((prev) => ({
+                  ...prev,
+                  description: e.target.value,
+                }))
+              }
               className="input min-h-[100px] resize-y"
               maxLength={2000}
             />
           </div>
 
           <div>
-            <label htmlFor="edit-tags" className="label">Tags (comma separated)</label>
+            <label htmlFor="edit-tags" className="label">
+              Tags (comma separated)
+            </label>
+
             <input
               id="edit-tags"
               type="text"
               value={editForm.tags}
-              onChange={(e) => setEditForm(prev => ({ ...prev, tags: e.target.value }))}
+              onChange={(e) =>
+                setEditForm((prev) => ({
+                  ...prev,
+                  tags: e.target.value,
+                }))
+              }
               className="input"
             />
           </div>
@@ -209,6 +277,7 @@ export function NoteDetails() {
             >
               Cancel
             </button>
+
             <button type="submit" className="btn-primary flex-1">
               Save Changes
             </button>
@@ -220,7 +289,10 @@ export function NoteDetails() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <Link to="/notes" className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6">
+      <Link
+        to="/notes"
+        className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6"
+      >
         <ArrowLeft className="w-5 h-5" />
         Back to Notes
       </Link>
@@ -228,51 +300,71 @@ export function NoteDetails() {
       <article className="card overflow-hidden">
         <div className="p-6 md:p-8">
           <div className="flex items-start gap-6 mb-6">
-            <div className={`w-20 h-20 rounded-xl flex items-center justify-center flex-shrink-0 ${fileTypeColor}`}>
+            <div
+              className={`w-20 h-20 rounded-xl flex items-center justify-center flex-shrink-0 ${fileTypeColor}`}
+            >
               <FileIcon className="w-10 h-10" />
             </div>
-            
+
             <div className="flex-1 min-w-0">
               <div className="flex flex-wrap items-center gap-2 mb-3">
-                <span className={`badge ${fileTypeColor}`}>{note.fileType.toUpperCase()}</span>
+                <span className={`badge ${fileTypeColor}`}>
+                  {note.fileType.toUpperCase()}
+                </span>
+
                 {note.subject && (
-                  <Link to={`/notes?subject=${note.subject._id}`} className="badge badge-primary hover:bg-primary-200">
+                  <Link
+                    to={`/notes?subject=${note.subject._id}`}
+                    className="badge badge-primary hover:bg-primary-200"
+                  >
                     {note.subject.name}
                   </Link>
                 )}
+
                 {note.topic && (
-                  <Link to={`/notes?topic=${note.topic._id}`} className="badge badge-gray hover:bg-gray-200">
+                  <Link
+                    to={`/notes?topic=${note.topic._id}`}
+                    className="badge badge-gray hover:bg-gray-200"
+                  >
                     {note.topic.name}
                   </Link>
                 )}
               </div>
-              
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">{note.title}</h1>
-              
+
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                {note.title}
+              </h1>
+
               {note.description && (
                 <p className="text-gray-600 mb-4">{note.description}</p>
               )}
-              
+
               <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
                 <span className="flex items-center gap-1">
                   <User className="w-4 h-4" />
                   {note.uploadedBy?.name || "Unknown"}
                 </span>
+
                 <span className="flex items-center gap-1">
                   <Calendar className="w-4 h-4" />
                   {format(new Date(note.createdAt), "MMM d, yyyy")}
                 </span>
+
                 <span className="flex items-center gap-1">
                   <Eye className="w-4 h-4" />
                   {note.views.toLocaleString()} views
                 </span>
+
                 <span className="flex items-center gap-1">
                   <Download className="w-4 h-4" />
                   {note.downloads.toLocaleString()} downloads
                 </span>
+
                 <span className="flex items-center gap-1">
                   <Clock className="w-4 h-4" />
-                  {formatDistanceToNow(new Date(note.createdAt), { addSuffix: true })}
+                  {formatDistanceToNow(new Date(note.createdAt), {
+                    addSuffix: true,
+                  })}
                 </span>
               </div>
             </div>
@@ -284,9 +376,12 @@ export function NoteDetails() {
                 <Tag className="w-4 h-4" />
                 <span>Tags:</span>
               </div>
+
               <div className="flex flex-wrap gap-2">
                 {note.tags.map((tag) => (
-                  <span key={tag} className="badge badge-gray">{tag}</span>
+                  <span key={tag} className="badge badge-gray">
+                    {tag}
+                  </span>
                 ))}
               </div>
             </div>
@@ -298,9 +393,13 @@ export function NoteDetails() {
               className="btn-primary flex-1 sm:flex-none"
             >
               <Download className="w-5 h-5 mr-2" />
-              Download ({note.fileSize ? `${(note.fileSize / (1024 * 1024)).toFixed(1)} MB` : ""})
+              Download (
+              {note.fileSize
+                ? `${(note.fileSize / (1024 * 1024)).toFixed(1)} MB`
+                : ""}
+              )
             </button>
-            
+
             <button
               type="button"
               onClick={handleViewOnline}
@@ -309,7 +408,7 @@ export function NoteDetails() {
               <Eye className="w-5 h-5 mr-2" />
               {previewOpen ? "Hide Preview" : "View Online"}
             </button>
-            
+
             {canEdit && (
               <div className="relative ml-auto">
                 <button
@@ -318,14 +417,23 @@ export function NoteDetails() {
                 >
                   <MoreVertical className="w-5 h-5" />
                 </button>
-                
+
                 {showMenu && (
                   <>
-                    <div className="fixed inset-0 z-10" onClick={() => setShowMenu(false)} />
+                    <div
+                      className="fixed inset-0 z-10"
+                      onClick={() => setShowMenu(false)}
+                    />
+
                     <div className="absolute right-0 top-full mt-1 w-40 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-20">
                       <button
                         onClick={() => {
-                          setEditForm({ title: note.title, description: note.description || "", tags: note.tags?.join(", ") || "" });
+                          setEditForm({
+                            title: note.title,
+                            description: note.description || "",
+                            tags: note.tags?.join(", ") || "",
+                          });
+
                           setEditing(true);
                           setShowMenu(false);
                         }}
@@ -334,6 +442,7 @@ export function NoteDetails() {
                         <Edit className="w-4 h-4" />
                         Edit
                       </button>
+
                       <button
                         onClick={handleDelete}
                         disabled={deleting}
@@ -353,18 +462,31 @@ export function NoteDetails() {
         {note.isApproved === false && (
           <div className="bg-yellow-50 border-t border-yellow-200 p-4 flex items-center gap-3">
             <XCircle className="w-5 h-5 text-yellow-600 flex-shrink-0" />
-            <p className="text-yellow-800 text-sm">This note is pending admin approval.</p>
+
+            <p className="text-yellow-800 text-sm">
+              This note is pending admin approval.
+            </p>
           </div>
         )}
       </article>
+
       {previewOpen && (
-        <section className="card mt-6 overflow-hidden" aria-label="Note preview">
+        <section
+          className="card mt-6 overflow-hidden"
+          aria-label="Note preview"
+        >
           <div className="flex items-center justify-between border-b border-gray-100 px-4 py-3">
             <h2 className="font-semibold text-gray-900">{note.title}</h2>
-            <button type="button" onClick={() => setPreviewOpen(false)} className="text-sm text-gray-600 hover:text-gray-900">
+
+            <button
+              type="button"
+              onClick={() => setPreviewOpen(false)}
+              className="text-sm text-gray-600 hover:text-gray-900"
+            >
               Close preview
             </button>
           </div>
+
           <iframe
             title={`${note.title} preview`}
             src={`/api/notes/${id}/view`}
