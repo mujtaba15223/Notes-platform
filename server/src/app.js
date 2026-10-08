@@ -30,7 +30,11 @@ app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cookieParser());
 
-app.use("/uploads", express.static(env.storagePath));
+app.use(
+  "/uploads",
+  express.static(env.storagePath),
+  express.static(env.bundledStoragePath)
+);
 
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,

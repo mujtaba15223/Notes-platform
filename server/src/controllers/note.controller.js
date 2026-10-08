@@ -2,7 +2,9 @@ import { noteService } from "../services/note.service.js";
 import { storageService } from "../services/storage.service.js";
 import { asyncHandler } from "../middleware/error.middleware.js";
 import { AppError } from "../middleware/error.middleware.js";
+import { env } from "../config/env.js";
 import fs from "fs";
+import path from "path";
 
 const inlineMimeTypes = {
   pdf: "application/pdf",
@@ -35,20 +37,26 @@ const getAccessibleNote = async (req) => {
 const getExistingFilePath = (note) => {
   const filePath = storageService.getFilePath(note.fileUrl);
 
-  // Cloudinary file
   if (note.fileUrl?.startsWith("http")) {
     return filePath;
   }
 
-  // Local file
-  if (!fs.existsSync(filePath)) {
-    throw new AppError("The note file is missing from storage", 404);
+  if (fs.existsSync(filePath)) {
+    return filePath;
   }
 
-  return filePath;
+  const bundledFilePath = path.join(
+    env.bundledStoragePath,
+    path.basename(note.fileUrl)
+  );
+  if (fs.existsSync(bundledFilePath)) {
+    return bundledFilePath;
+  }
+
+  throw new AppError("The note file is missing from storage", 404);
 };
 
-const streamCloudinaryFile = async (url, res, mimeType) => {
+const sendCloudinaryFile = async (url, res, mimeType) => {
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -58,39 +66,12 @@ const streamCloudinaryFile = async (url, res, mimeType) => {
     );
   }
 
+  const file = Buffer.from(await response.arrayBuffer());
   res.setHeader("Content-Type", mimeType);
   res.setHeader("Content-Disposition", "inline");
+  res.setHeader("Content-Length", file.length);
   res.setHeader("X-Content-Type-Options", "nosniff");
-
-  if (response.headers.get("content-length")) {
-    res.setHeader(
-      "Content-Length",
-      response.headers.get("content-length")
-    );
-  }
-
-  if (!response.body) {
-    throw new AppError("Could not read file from Cloudinary", 502);
-  }
-
-  const reader = response.body.getReader();
-
-  try {
-    while (true) {
-      const { done, value } = await reader.read();
-
-      if (done) {
-        break;
-      }
-
-      res.write(Buffer.from(value));
-    }
-
-    res.end();
-  } catch (error) {
-    reader.cancel().catch(() => {});
-    throw error;
-  }
+  res.end(file);
 };
 
 export const noteController = {
@@ -171,7 +152,6 @@ export const noteController = {
 
     await noteService.incrementDownloads(req.params.id);
 
-    // Cloudinary file
     if (note.fileUrl?.startsWith("http")) {
       const response = await fetch(note.fileUrl);
 
@@ -218,7 +198,6 @@ export const noteController = {
       return res.end();
     }
 
-    // Local file
     res.download(filePath, note.fileName);
   }),
 
@@ -236,9 +215,8 @@ export const noteController = {
 
     await noteService.incrementViews(req.params.id);
 
-    // Cloudinary file
     if (note.fileUrl?.startsWith("http")) {
-      return streamCloudinaryFile(
+      return sendCloudinaryFile(
         note.fileUrl,
         res,
         mimeType

@@ -18,5 +18,6 @@ export const env = {
   storagePath: path.resolve(serverRoot, process.env.STORAGE_PATH || (process.env.VERCEL
     ? "/tmp/student-notes-uploads"
     : "uploads")),
+  bundledStoragePath: path.join(serverRoot, "uploads"),
   nodeEnv: process.env.NODE_ENV || "development",
 };

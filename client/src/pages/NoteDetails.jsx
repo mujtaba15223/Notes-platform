@@ -121,9 +121,9 @@ export function NoteDetails() {
   };
 
   const handleViewOnline = () => {
-    if (!previewableFileTypes.has(note.fileType)) {
+    if (!previewableFileTypes.has(note.fileType?.toLowerCase())) {
       toast.error(
-        "Online preview is unavailable for this file type. Download it to view."
+        "This file type is kept private and cannot be previewed in the browser. Download it to open it."
       );
       return;
     }
